@@ -15,8 +15,19 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->unsignedTinyInteger('idNumber')->nullable;
+            $table->unsignedTinyInteger('idPersonal')->nullable;
+            $table->string('description')->nullable;
+            $table->string('specialization')->nullable;
+            $table->date('dob')->nullable;
+            $table->enum('gender',['male','female','unknown'])->nullable;
+            $table->unsignedTinyInteger('phone')->nullable;
+            $table->string('address')->nullable;
+            $table->integer('experience')->nullable;
+            $table->string('photo')->nullable;
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
             $table->rememberToken();
             $table->timestamps();
         });
