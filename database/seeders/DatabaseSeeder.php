@@ -18,6 +18,16 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'idNumber'=>'11',
+            'idPersonal'=>'2113',
+            'description'=>'Doctor',
+            'specialization'=>'doctor',
+            'dob'=>'1111-11-11',
+            'gender'=>'male',
+            'phone'=>'123132112',
+            'address'=>'egypt',
+            'experience'=>'22',
+            'photo'=>'photo'
         ]);
     }
 }
