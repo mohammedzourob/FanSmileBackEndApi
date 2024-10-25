@@ -10,6 +10,13 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('alluser',[UserController::class, 'users']);
 
 Route::post('register',[AuthController::class,'register']);
+Route::post('login',[AuthController::class,'login']);
+
+
+Route::group(['middleware' => array('auth:sanctum')], function () {
+        Route::get('user',[UserController::class, 'user']);
+
+}
+);
