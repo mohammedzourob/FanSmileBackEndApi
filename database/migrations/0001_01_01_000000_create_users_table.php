@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->integer('idNumber')->length(20)->nullable();
-            $table->integer('idPersonal')->length(20)->nullable();
+            $table->bigInteger('idNumber')->nullable();
+            $table->bigInteger('idPersonal')->nullable();
             $table->string('description')->nullable();
             $table->string('specialization')->nullable();
             $table->date('dob')->nullable();
             $table->enum('gender',['male','female','unknown'])->nullable();
-            $table->integer('phone')->length(20)->nullable();
+            $table->bigInteger('phone')->nullable();
             $table->string('address')->nullable();
             $table->integer('experience')->nullable();
             $table->string('photo')->nullable();
