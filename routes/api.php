@@ -18,6 +18,7 @@ Route::post('login',[AuthController::class,'login']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user',[UserController::class, 'user']);
+    Route::delete('/user-delete',[UserController::class, 'userDelete']);
     Route::post('/user-update',[UserController::class,'userUpdate']);
 
 });
