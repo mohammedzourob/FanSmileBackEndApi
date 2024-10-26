@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\user\UpdateUserRequest;
 use Illuminate\Support\Facades\Auth;
@@ -35,5 +35,15 @@ class UserController extends Controller
 
     }
 
-
+    public function userDelete()
+    {
+        if(Auth::check())
+        {
+            $userId = Auth::user()->id;
+            $user=User::find($userId);
+            // dd($user);
+            $user->delete();
+            return parent::success($user);
+        }
+    }
 }
