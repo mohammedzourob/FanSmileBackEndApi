@@ -30,9 +30,6 @@ class AuthController extends Controller
         $request['password']=Hash::make($request->input('password'));
         $user = User::create($request->all());
 
-        if ($request->has('fcm_token')) {
-            Token_firebase::create(['fcm_token' => $request->get('fcm_token'), 'user_id' => $user->id]);
-        }
         $success =  $user->createToken($user->name)->plainTextToken;
 
         $token=$user->tokens->first()->token;
