@@ -3,8 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\AuthController;
+use App\Http\Controllers\api\UserController;
+use App\Http\Controllers\api\PatientController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -21,4 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/user-delete',[UserController::class, 'userDelete']);
     Route::post('/user-update',[UserController::class,'userUpdate']);
 
+
 });
+Route::post('create-patient',[PatientController::class,'create']);
+Route::post('update-patient/{id}',[PatientController::class,'update']);
