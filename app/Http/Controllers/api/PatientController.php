@@ -10,9 +10,15 @@ use App\Http\Requests\UpdatePatientRequest;
 
 use App\models\Patient;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 class PatientController extends Controller
 {
 
+    public function index(){
+        $patients=Patient::all();
+        // $years = Carbon::parse('1999-02-02')->age;
+        return parent::success($patients);
+    }
     public function create(PatientRequest $request): JsonResponse
     {
         $validation=$request->validated();

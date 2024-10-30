@@ -24,5 +24,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 });
+Route::get('patients',[PatientController::class,'index']);
 Route::post('create-patient',[PatientController::class,'create']);
 Route::post('update-patient/{id}',[PatientController::class,'update']);
