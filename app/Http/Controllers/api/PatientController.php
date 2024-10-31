@@ -39,4 +39,12 @@ class PatientController extends Controller
 
     }
 
+    public function delete($id)
+    {
+        $patients= Patient::find($id);
+        $patients->delete();
+        $messages='Deleted Successfuly';
+        return parent::success($messages);
+    }
+
 }
