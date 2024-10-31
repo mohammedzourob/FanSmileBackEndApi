@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\PatientController;
+use App\Http\Controllers\api\AppointmentController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -27,3 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('patients',[PatientController::class,'index']);
 Route::post('create-patient',[PatientController::class,'create']);
 Route::post('update-patient/{id}',[PatientController::class,'update']);
+Route::delete('delete-patient/{id}',[PatientController::class,'delete']);
+
+
+Route::post('create-appointment',[AppointmentController::class,'store']);
