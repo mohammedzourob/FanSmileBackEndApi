@@ -18,7 +18,7 @@ class Patient extends Model
         'dob',
     ];
 
-    public function appoiments()
+    public function appointments()
     {
         return  $this->hasOne(Appoiment::class);
     }
