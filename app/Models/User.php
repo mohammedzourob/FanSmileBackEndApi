@@ -45,6 +45,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function appointment()
+    {
+        return $this->hasOne(appointment::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
