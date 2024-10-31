@@ -17,4 +17,9 @@ class Patient extends Model
         'phone',
         'dob',
     ];
+
+    public function appoiments()
+    {
+        return  $this->hasOne(Appoiment::class);
+    }
 }
