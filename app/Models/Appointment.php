@@ -11,7 +11,8 @@ class Appointment extends Model
     'patientId',
     'startDate',
     'endDate',
-    'details'
+    'details',
+    'status'
     ];
 
 
