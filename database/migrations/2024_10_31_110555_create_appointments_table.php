@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('patientId');
             $table->dateTime('startDate');
             $table->dateTime('endDate');
+            $table->enum('status',['active','unactive']);
             $table->text('details');
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('patientId')->references('id')->on('patients')->onDelete('cascade');
