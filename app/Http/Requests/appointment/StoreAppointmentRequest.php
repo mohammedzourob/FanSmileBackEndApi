@@ -26,7 +26,8 @@ class StoreAppointmentRequest extends FormRequest
             'patientId'=>'required',
             'startDate'=>['required', 'date', 'after_or_equal:today'],
             'endDate' => ['required', 'date', 'after_or_equal:today'],
-            'details'=>'required'
+            'details'=>'required',
+            'status'=>'active'
            ];
     }
 }
