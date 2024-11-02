@@ -32,3 +32,5 @@ Route::delete('delete-patient/{id}',[PatientController::class,'delete']);
 
 
 Route::post('create-appointment',[AppointmentController::class,'store']);
+Route::get('all-appointment',[AppointmentController::class,'index']);
+Route::get('update-status-appointment/{id}',[AppointmentController::class,'updateStatus']);
