@@ -53,4 +53,28 @@ class AppointmentController extends Controller
         $appointment->update();
         return parent::success('update stusas successfully');
     }
+
+    /**
+     * this function delete appointment.
+     * here use softDelete
+     */
+    public function delete($id)
+    {
+        $appointment=Appointment::findOrFail($id);
+        $appointment->delete();
+        return parent::success('deleted successfully');
+    }
+
+    /**
+     * this function to return the appointment from delete
+     */
+    public function restoreAppointment($id)
+    {
+        $appointment=Appointment::onlyTrashed()->findOrFail($id);
+
+        // dd($appointment);
+        $appointment->restore();
+        return parent::success($appointment);
+
+    }
 }
