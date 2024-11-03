@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Http\Requests\appointment\StoreAppointmentRequest;
+use App\Http\Requests\appointment\UpdateAppointmentRequest;
 use Illuminate\Http\JsonResponse;
 use App\models\Appointment;
 
@@ -31,6 +33,39 @@ class AppointmentController extends Controller
         $appointment=Appointment::create($request->all());
 
         return parent::success($appointment);
+    }
+
+    /**
+     * this function update the appointment any column in database
+     * it depends on sending the request and verifying it via UpdateAppointmentRequest
+     */
+    public function update(UpdateAppointmentRequest $request,$id) : JsonResponse
+    {
+        $appointment=Appointment::findOrFail($id);
+        $validation=$request->validated();
+        $appointment->update($validation);
+        $messages='update successfully';
+
+        return parent::success($messages);
+    }
+    /**
+     * this function return one appointment about id
+     */
+    public function getAppointment(Request $request)
+    {
+        $appointment=Appointment::where('id',$request->id)->where('status','active')->get();
+
+        $data=$appointment->map(function($p){
+            return[
+                'doctor' =>$p->users['name'],
+                'patient' =>$p->patients['firstName'].' '.$p->patients['lastName'],
+                'startDate'=>$p->startDate,
+                'endDate'=>$p->endDate,
+                'details'=>$p->details,
+            ];
+        });
+            return parent::success($data);
+
     }
 
     /**
