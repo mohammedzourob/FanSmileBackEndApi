@@ -7,6 +7,7 @@ use App\Http\Controllers\api\AuthController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\PatientController;
 use App\Http\Controllers\api\AppointmentController;
+use App\Http\Controllers\api\OperationController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -26,7 +27,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
 Route::get('patients',[PatientController::class,'index']);
-Route::post('create-patient',[PatientController::class,'create']);
+Route::post('create-patient',[PatientController::class,'store']);
 Route::post('update-patient/{id}',[PatientController::class,'update']);
 Route::delete('delete-patient/{id}',[PatientController::class,'delete']);
 
@@ -38,3 +39,9 @@ Route::get('get-appointment/{id}',[AppointmentController::class,'getAppointment'
 Route::get('update-status-appointment/{id}',[AppointmentController::class,'updateStatus']);
 Route::delete('delete-appointment/{id}',[AppointmentController::class,'delete']);
 Route::get('restore-appointment/{id}',[AppointmentController::class,'restoreAppointment']);
+
+
+
+Route::post('create-operation',[OperationController::class,'store']);
+Route::post('update-operation/{id}',[OperationController::class,'update']);
+Route::get('all-operation',[OperationController::class,'index']);
