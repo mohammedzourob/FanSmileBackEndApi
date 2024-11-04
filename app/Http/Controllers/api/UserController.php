@@ -30,7 +30,7 @@ class UserController extends Controller
             $validation['password'] = bcrypt($validation['password']);
         }
         $user->update($validation);
-        $message='update successfuly';
+        $message='update successfully';
         return parent::success($message);
 
     }
