@@ -19,7 +19,17 @@ class AppointmentController extends Controller
     public function index()
     {
         $appointment=Appointment::where('status','active')->simplePaginate(10);
-        return parent::success($appointment);
+        $data=$appointment->map(function($p){
+            return[
+                'id'=>$p->id,
+                'doctor'=>$p->users['name'],
+                'patient'=>$p->patients['firstName'].' '.$p->patients['lastName'],
+                'details'=>$p->details,
+                'startDate'=>$p->startDate,
+                'endDate'=>$p->endDate
+            ];
+        });
+        return parent::success($data);
     }
 
     /**
@@ -59,9 +69,9 @@ class AppointmentController extends Controller
             return[
                 'doctor' =>$p->users['name'],
                 'patient' =>$p->patients['firstName'].' '.$p->patients['lastName'],
+                'details'=>$p->details,
                 'startDate'=>$p->startDate,
                 'endDate'=>$p->endDate,
-                'details'=>$p->details,
             ];
         });
             return parent::success($data);
@@ -106,8 +116,6 @@ class AppointmentController extends Controller
     public function restoreAppointment($id)
     {
         $appointment=Appointment::onlyTrashed()->findOrFail($id);
-
-        // dd($appointment);
         $appointment->restore();
         return parent::success($appointment);
 
