@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('userId');
             $table->unsignedBigInteger('patientId');
+            $table->integer('appointmentNumber')->unique();
             $table->dateTime('startDate');
             $table->dateTime('endDate');
             $table->enum('status',['active','unactive']);

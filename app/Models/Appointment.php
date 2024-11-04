@@ -13,7 +13,8 @@ class Appointment extends Model
     'startDate',
     'endDate',
     'details',
-    'status'
+    'status',
+    'appointmentNumber'
     ];
 
 

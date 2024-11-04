@@ -39,10 +39,10 @@ class AppointmentController extends Controller
     public function store(StoreAppointmentRequest $request): JsonResponse
     {
         $validation=$request->validated();
-
+        $request['appointmentNumber']=rand(1000000,9999999);
         $appointment=Appointment::create($request->all());
 
-        return parent::success($appointment);
+        return parent::success('appointment has created');
     }
 
     /**
