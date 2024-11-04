@@ -19,7 +19,7 @@ class PatientController extends Controller
         // $years = Carbon::parse('1999-02-02')->age;
         return parent::success($patients);
     }
-    public function create(PatientRequest $request): JsonResponse
+    public function store(PatientRequest $request): JsonResponse
     {
         $validation=$request->validated();
         $request['patientNumber']=rand(1000000, 9999999);
