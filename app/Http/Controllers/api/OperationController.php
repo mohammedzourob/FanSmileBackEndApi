@@ -73,7 +73,7 @@ class OperationController extends Controller
 
             ])->orWhere('status','done')->first();
 
-            if($operation != null)
+            if($operation)
             {
                 $operationData=[
                     'id'=>$operation->id,
@@ -104,7 +104,7 @@ class OperationController extends Controller
     }
 
     /**
-     * the restoreOperation function to return operation to view and add the deleted_at = null . 
+     * the restoreOperation function to return operation to view and add the deleted_at = null .
      */
     public function restoreOpreation($id)
     {

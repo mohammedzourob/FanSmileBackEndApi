@@ -65,7 +65,7 @@ class AppointmentController extends Controller
     {
         $appointment=Appointment::where([['id',$request->id],['status','active']])->first();
 
-        if($appointment != null)
+        if($appointment)
         {
             $appointmentData=[
                 'doctor' =>$appointment->users['name'],
