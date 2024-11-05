@@ -45,3 +45,6 @@ Route::get('restore-appointment/{id}',[AppointmentController::class,'restoreAppo
 Route::post('create-operation',[OperationController::class,'store']);
 Route::post('update-operation/{id}',[OperationController::class,'update']);
 Route::get('all-operation',[OperationController::class,'index']);
+Route::get('get-opreation/{id}',[OperationController::class,'show']);
+Route::delete('delete-opreation/{id}',[OperationController::class,'delete']);
+Route::get('restore-opreation/{id}',[OperationController::class,'restoreOpreation']);
