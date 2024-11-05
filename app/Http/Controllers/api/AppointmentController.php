@@ -63,18 +63,25 @@ class AppointmentController extends Controller
      */
     public function getAppointment(Request $request)
     {
-        $appointment=Appointment::where('id',$request->id)->where('status','active')->get();
+        $appointment=Appointment::where([['id',$request->id],['status','active']])->first();
 
-        $data=$appointment->map(function($p){
-            return[
-                'doctor' =>$p->users['name'],
-                'patient' =>$p->patients['firstName'].' '.$p->patients['lastName'],
-                'details'=>$p->details,
-                'startDate'=>$p->startDate,
-                'endDate'=>$p->endDate,
+        if($appointment != null)
+        {
+            $appointmentData=[
+                'doctor' =>$appointment->users['name'],
+                'patient' =>$appointment->patients['firstName'].' '.$appointment->patients['lastName'],
+                'details'=>$appointment->details,
+                'startDate'=>$appointment->startDate,
+                'endDate'=>$appointment->endDate,
             ];
-        });
-            return parent::success($data);
+                return parent::success($appointmentData);
+        }
+        else
+        {
+            return parent::success('appointment has deleted or unactive');
+        }
+
+
 
     }
 
