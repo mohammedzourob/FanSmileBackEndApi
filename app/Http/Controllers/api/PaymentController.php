@@ -13,27 +13,28 @@ class PaymentController extends Controller
 {
 
 
-    public function store(StorePaymentRequest $request):JsonResponse
+    public function store(StorePaymentRequest $request): JsonResponse
     {
 
-        $validation=$request->validated();
-        $total=$request['totalAmount'];
-        $first=$request['firstAmount'];
+        $request->validated();
+        $total = $request['totalAmount'];
+        $first = $request['firstAmount'
+        ];
 
-        $request['remainingAmount']=$total-$first;
-        $payment=Payment::create($request->all());
+        $request['remainingAmount'] = $total - $first;
+        Payment::create($request->all());
 
         return parent::success('payment has added successfully');
     }
 
-    public function update(UpdatePaymentRequest $request,$id)
+    public function update(UpdatePaymentRequest $request, $id)
     {
-        $validation=$request->validated();
-        $payment=Payment::findOrFail($id);
-        $total=$request['totalAmount'];
-        $first=$request['firstAmount'];
+        $validation = $request->validated();
+        $payment = Payment::findOrFail($id);
+        $total = $request['totalAmount'];
+        $first = $request['firstAmount'];
 
-        $payment['remainingAmount']=$total-$first;
+        $payment['remainingAmount'] = $total - $first;
         $payment->update($validation);
 
         return parent::success('payment has added successfully');
