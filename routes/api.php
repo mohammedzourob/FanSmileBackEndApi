@@ -8,6 +8,7 @@ use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\PatientController;
 use App\Http\Controllers\api\AppointmentController;
 use App\Http\Controllers\api\OperationController;
+use App\Http\Controllers\api\PaymentController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -48,3 +49,8 @@ Route::get('all-operation',[OperationController::class,'index']);
 Route::get('get-opreation/{id}',[OperationController::class,'show']);
 Route::delete('delete-opreation/{id}',[OperationController::class,'delete']);
 Route::get('restore-opreation/{id}',[OperationController::class,'restoreOpreation']);
+
+
+
+Route::post('create-payment',[PaymentController::class,'store']);
+Route::post('update-payment/{id}',[PaymentController::class,'update']);
