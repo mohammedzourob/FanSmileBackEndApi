@@ -18,10 +18,10 @@ class PaymentController extends Controller
 
         $request->validated();
         $total = $request['totalAmount'];
-        $first = $request['firstAmount'
-        ];
+        $first = $request['firstAmount'];
 
         $request['remainingAmount'] = $total - $first;
+        $request['lastAmountPaid'] = $first;
         Payment::create($request->all());
 
         return parent::success('payment has added successfully');
@@ -35,6 +35,7 @@ class PaymentController extends Controller
         $first = $request['firstAmount'];
 
         $payment['remainingAmount'] = $total - $first;
+        $payment['lastAmountPaid'] = $total - $first;
         $payment->update($validation);
 
         return parent::success('payment has added successfully');
