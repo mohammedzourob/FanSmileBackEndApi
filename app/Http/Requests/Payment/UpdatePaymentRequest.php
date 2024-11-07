@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Payment;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use App\Models\Payment;
 class UpdatePaymentRequest extends FormRequest
 {
     /**
@@ -21,17 +21,19 @@ class UpdatePaymentRequest extends FormRequest
      */
     public function rules(): array
     {
+        $payment = Payment::findOrFail($this->route("id"));
         return [
-            'appointmentId'=>'required_without:operationId|unique:payments,appointmentId',
-            'operationId'=>'required_without:appointmentId',
-            'totalAmount'=>'required',
-            'firstAmount'=>'required',
-            'remainingAmount'=>'nullable',
+            'appointmentId' => 'required_without:operationId',
+            'operationId' => 'required_without:appointmentId',
+            'totalAmount' => 'required',
+            'firstAmount' => 'required',
+            'remainingAmount' => 'nullable',
         ];
     }
 
-    public function messages():array{
-        return[
+    public function messages(): array
+    {
+        return [
 
             'appointmentId.required' => 'The appointment ID is required.',
             'appointmentId.integer' => 'The appointment ID must be a valid integer.',
