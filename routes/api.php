@@ -55,6 +55,8 @@ Route::get('restore-opreation/{id}', [OperationController::class, 'restoreOpreat
 
 Route::post('create-payment', [PaymentController::class, 'store']);
 Route::post('update-payment/{id}', [PaymentController::class, 'update']);
+Route::delete('delete-payment/{id}', [PaymentController::class, 'destroy']);
+Route::get('get-payment/{id}', [PaymentController::class, 'show']);
 
 Route::post('create-pay', [PayController::class, 'store']);
 Route::post('update-pay/{id}', [PayController::class, 'update']);
