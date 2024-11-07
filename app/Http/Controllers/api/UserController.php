@@ -13,10 +13,9 @@ class UserController extends Controller
 {
 
 
-    public function user() {
-
-        if(Auth::check())
-        {
+    public function user()
+    {
+        if (Auth::check()) {
             $user = Auth::user();
             return parent::success($user);
         }
@@ -24,23 +23,22 @@ class UserController extends Controller
 
     public function userUpdate(UpdateUserRequest $request, User $user): JsonResponse
     {
-        $user=Auth::user();
-        $validation=$request->validated();
+        $user = Auth::user();
+        $validation = $request->validated();
         if (isset($validation['password'])) {
             $validation['password'] = bcrypt($validation['password']);
         }
         $user->update($validation);
-        $message='update successfully';
+        $message = 'update successfully';
         return parent::success($message);
 
     }
 
     public function userDelete()
     {
-        if(Auth::check())
-        {
+        if (Auth::check()) {
             $userId = Auth::user()->id;
-            $user=User::find($userId);
+            $user = User::find($userId);
             // dd($user);
             $user->delete();
             return parent::success($user);
